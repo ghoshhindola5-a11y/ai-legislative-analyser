@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Legislative Analyser</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Legislative Analyser</h1>
+        <form method="POST">
+            <textarea name="legislation" placeholder="Paste legislative text here..." rows="10" cols="80"></textarea><br>
+            <button type="submit">Analyse</button>
+        </form>
+
+        {% if summary %}
+        <div class="results">
+            <h2>Summary</h2>
+            <p>{{ summary }}</p>
+
+            <h2>Entities</h2>
+            <ul>
+                {% for ent, label in entities %}
+                <li><strong>{{ ent }}</strong> ({{ label }})</li>
+                {% endfor %}
+            </ul>
+
+            <h2>Topics</h2>
+            <ul>
+                {% for topic in topics %}
+                <li>{{ topic }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
